@@ -1,11 +1,13 @@
 import React from 'react'
 import { Contact } from '../api'
 import Table from 'react-bootstrap/Table';
-import { NotStarredIcon, PenIcon, TrashIcon, } from './Icons'
+import { NotStarredIcon, StarredIcon, PenIcon, TrashIcon, } from './Icons'
 
 export interface ContactListProps {
-  contacts: Contact[]
-  onDelete: Function
+  contacts: Contact[],
+  filterFavorites: boolean,
+  onDelete: Function,
+  onToggleFavorite: Function,
 }
 
 const ContactList = (props: ContactListProps) => {
@@ -23,16 +25,27 @@ const ContactList = (props: ContactListProps) => {
         </tr>
       </thead>
       <tbody>
-        {props.contacts.map((contact: Contact, index) =>
-          <tr key={index.toString()}>
-            <td><NotStarredIcon onClick={() => {console.log('click')}}/></td>
-            <td>{contact.name}</td>
-            <td><a href={"mailto:" + contact.email}>{contact.email}</a></td>
-            <td>{contact.phone || ''}</td>
-            <td><PenIcon/></td>
-            <td><TrashIcon onClick={() => { props.onDelete(index) }} /></td>
-          </tr>
-        )}
+        {props.contacts
+          .map((contact: Contact, index) => {
+            if (!props.filterFavorites || contact.isFavorite) {
+              return (
+                <tr key={index.toString()}>
+                  <td>{
+                    contact.isFavorite ?
+                      <StarredIcon onClick={() => { props.onToggleFavorite(index) }} /> :
+                      <NotStarredIcon onClick={() => { props.onToggleFavorite(index) }} />
+                  }</td>
+                  <td>{contact.name}</td>
+                  <td><a href={"mailto:" + contact.email}>{contact.email}</a></td>
+                  <td>{contact.phone || ''}</td>
+                  <td><PenIcon /></td>
+                  <td><TrashIcon onClick={() => { props.onDelete(index) }} /></td>
+                </tr>
+              )
+            }
+            return null
+          })
+        }
       </tbody>
     </Table>
   )
