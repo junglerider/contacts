@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Contacts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Minimal contact application
+
+I choose Bootstrap React for the components, as I haven't worked with it yet and wanted to try it out.
 
 ## Available Scripts
 

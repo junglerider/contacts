@@ -19,22 +19,24 @@ const api = {
     window.localStorage.setItem('contacts', contactsJson)
   },
 
-  delete: (index: number) => {
+  delete: (index: number): Contact[] => {
     const contacts = api.load()
     if (typeof contacts[index] !== 'undefined') {
-      contacts.splice(index)
+      contacts.splice(index, 1)
     }
     api.save(contacts)
+    return contacts
   },
 
-  add: (contact: Contact) => {
+  add: (contact: Contact): Contact[] => {
     const contacts = api.load()
     contacts.push(contact)
     api.save(contacts)
+    return contacts
   },
 
-  addRandom: () => {
-    api.add({
+  addRandom: (): Contact[] => {
+    return api.add({
       name: faker.name.findName(),
       email: faker.internet.email(),
       phone: faker.phone.phoneNumber(),
