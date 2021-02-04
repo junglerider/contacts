@@ -1,0 +1,27 @@
+
+.caption {
+  font-size: 3vw;
+  color: lightsteelblue;
+  text-align: center;
+}
+
+.app-container {
+  position: absolute;
+  left: 10vw;
+  width: 80vw;
+  top: 10vh;
+  height: 80vh;
+  background-color: #282c34;
+  color: white;
+  padding: 2%;
+  font-family: 'Rubik', sans-serif;
+  border-radius: 30px 30px;
+}
+
+.form-button-container {
+  text-align: center;
+}
+
+.button {
+  font-size: 1.1vw;
+}
