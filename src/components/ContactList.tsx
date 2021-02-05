@@ -6,8 +6,9 @@ import { NotStarredIcon, StarredIcon, PenIcon, TrashIcon, } from './Icons'
 export interface ContactListProps {
   contacts: Contact[],
   filterFavorites: boolean,
-  onDelete: Function,
-  onToggleFavorite: Function,
+  onDelete: (index: number) => void,
+  onEdit: (index: number) => void,
+  onToggleFavorite: (index: number) => void,
 }
 
 const ContactList = (props: ContactListProps) => {
@@ -38,7 +39,7 @@ const ContactList = (props: ContactListProps) => {
                   <td>{contact.name}</td>
                   <td><a href={"mailto:" + contact.email}>{contact.email}</a></td>
                   <td>{contact.phone || ''}</td>
-                  <td><PenIcon /></td>
+                  <td><PenIcon onClick={() => { props.onEdit(index) }} /></td>
                   <td><TrashIcon onClick={() => { props.onDelete(index) }} /></td>
                 </tr>
               )
@@ -51,4 +52,4 @@ const ContactList = (props: ContactListProps) => {
   )
 }
 
-export default ContactList;
+export default ContactList

@@ -28,6 +28,15 @@ const api = {
     return contacts
   },
 
+  update: (index: number, contact: Contact) => {
+    const contacts = api.load()
+    if (typeof contacts[index] !== 'undefined') {
+      contacts[index] = contact
+    }
+    api.save(contacts)
+    return contacts
+  },
+
   add: (contact: Contact): Contact[] => {
     const contacts = api.load()
     contacts.push(contact)

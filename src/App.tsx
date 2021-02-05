@@ -3,13 +3,18 @@ import Button from 'react-bootstrap/Button'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ContactList from './components/ContactList'
+import ContactDetails from './components/ContactDetails'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import api from './api'
+import api, { Contact } from './api'
 
-function App() {
+const App = () => {
   const [list, setList] = React.useState(api.load())
   const [filterFavorites, setFilterFavorites] = React.useState(0)
+  const [dialogState, setDialogState] = React.useState({
+    show: false,
+    contactIndex: -1 // new contact
+  })
 
   const addRandomContact = () => {
     setList(api.addRandom())
@@ -17,6 +22,18 @@ function App() {
 
   const onDelete = (index: number) => {
     setList(api.delete(index))
+  }
+
+  const onEdit = (index: number) => {
+    setDialogState({show: true, contactIndex: index})
+  }
+
+  const onSave = (contact: Contact, index: number) => {
+    if (index >= 0) {
+      setList(api.update(index, contact))
+    } else {
+      setList(api.add(contact))
+    }
   }
 
   const onToggleFavorite = (index: number) => {
@@ -27,13 +44,24 @@ function App() {
     setList(api.load())
   }
 
+  const setShowDialog = (show: boolean) => {
+    setDialogState({show: show, contactIndex: dialogState.contactIndex})
+  }
+
   return (
     <div className="app-container">
+      <ContactDetails
+        contactIndex={dialogState.contactIndex}
+        show={dialogState.show}
+        onHide={() => setShowDialog(false)}
+        onSave={onSave}
+      />
       <div className="caption">Contacts</div>
       <div className="content-container">
         <ContactList
           contacts={list}
           onDelete={onDelete}
+          onEdit={onEdit}
           onToggleFavorite={onToggleFavorite}
           filterFavorites={Boolean(filterFavorites)}
         />
@@ -43,6 +71,7 @@ function App() {
           variant="success"
           className="button"
           style={{ marginRight: "2%" }}
+          onClick={() => onEdit(-1)}
         >Add New
         </Button>
         <Button
