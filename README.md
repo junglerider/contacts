@@ -2,7 +2,7 @@
 
 Minimal contact application
 
-I choose Bootstrap React for the components, as I haven't worked with it yet and wanted to try it out.
+I chose Bootstrap React for the components, as I haven't worked with it yet and wanted to try it out. The dark theme is customised; it's not the Bootstrap default. There is an 'Add Random' function to facilitate testing. I was considering to create two pages for the list/detail views using the React router, but I went for a modal dialogue instead which mimics a traditional desktop app.
 
 ## Available Scripts
 

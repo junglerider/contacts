@@ -44,3 +44,27 @@
 .clickable-icon {
   cursor: pointer;
 }
+
+.modal-content {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1vw;
+  background-color: #343a40;
+  color: white;
+}
+
+.modal-title {
+  font-size: 2vw;
+}
+
+input.form-control {
+  font-size: 1.1vw;
+}
+
+.modal-header {
+  color: lightsteelblue;
+}
+
+.invalid-feedback {
+  color: white;
+}
+

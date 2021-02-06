@@ -1,6 +1,6 @@
 import React from 'react'
 import { Contact } from '../api'
-import Table from 'react-bootstrap/Table';
+import Table from 'react-bootstrap/Table'
 import { NotStarredIcon, StarredIcon, PenIcon, TrashIcon, } from './Icons'
 
 export interface ContactListProps {

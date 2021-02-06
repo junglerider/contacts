@@ -98,8 +98,16 @@ const ContactDetails = (props: ContactDetailsProps) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>Cancel</Button>
-          <Button type="submit" variant="primary">Save</Button>
+          <Button
+            variant="secondary"
+            onClick={props.onHide}
+            className="button"
+          >Cancel</Button>
+          <Button
+            type="submit"
+            variant="primary"
+            className="button"
+          >Save</Button>
         </Modal.Footer>
       </Form>
     </Modal>
